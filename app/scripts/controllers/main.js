@@ -8,7 +8,7 @@
  * Controller of the teaShopUiApp
  */
 angular.module('teaShopUiApp')
-  .controller('MainCtrl', function () {
+  .controller('MainCtrl', function (Restangular) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
