@@ -16,7 +16,8 @@ var app = angular.module('teaShopUiApp', [
   'ngRoute',
   'ngSanitize',
   'ngTouch',
-  'restangular'
+  'restangular',
+  'ngCart'
 ]);
 
 app.config(function ($routeProvider) {
@@ -40,6 +41,11 @@ app.config(function ($routeProvider) {
       templateUrl: 'views/teas.html',
       controller: 'TeasCtrl',
       controllerAs: 'teas'
+    })
+    .when('/cart', {
+      templateUrl: 'views/cart.html',
+      controller: 'CartCtrl',
+      controllerAs: 'cart'
     })
     .otherwise({
       redirectTo: '/'
@@ -90,4 +96,3 @@ app.config(function (RestangularProvider) {
   //});
 
 });
-
