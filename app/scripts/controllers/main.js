@@ -11,15 +11,9 @@ angular.module('teaShopUiApp')
   .controller('MainCtrl', function (Restangular) {
 
     var me = this;
-    var teas = Restangular.all('teas');
+    var teas = Restangular.all('teas').all('featured');
 
     teas.getList().then(function(teas) {
       me.teas = teas;
     });
-
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
   });
