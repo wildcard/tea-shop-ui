@@ -1,20 +1,53 @@
 <div class="row" ng-controller="TeasCtrl as teas">
-  <div class="card-columns">
-    <div class="card" ng-repeat="tea in teas.teas track by $index">
-      <div class="card-header">
-        Price: {{tea.price}}
-        <i class="fa fa-usd"></i>
+
+  <div class="col-md-12">
+    <form class="form-inline">
+      <div class="form-group">
+        <label for="query">Name</label>
+        <input id="query" class="form-control" ng-model="query" type="text" placeholder="Filter by" autofocus>
       </div>
 
-      <img ng-if="tea.image" alt="{{tea.name}}" class="img-fluid" ng-src="{{tea.image}}">
+      <fieldset class="form-group">
+        <label for="order">Order By</label>
 
-      <div class="card-block">
-        <h4 class="card-title">{{tea.name}}</h4>
-        <p class="card-text">{{tea.description}}</p>
-      </div>
-      <div class="card-block">
-        <a class="card-link" ng-href="#/teas/{{tea.id}}">Details</a>
-        <a class="card-link" ng-href="{{tea.link}}">Details Ext</a>
+        <select id="order" class="c-select" ng-model="orderList">
+          <option selected disabled value="">Order By</option>
+          <option value="name">By name</option>
+          <option value="-price">Cheap</option>
+          <option value="price">Expensive</option>
+          <option value="description">By description</option>
+        </select>
+
+        <div class="form-group">
+          <label class="c-input c-checkbox">
+            <input type="checkbox" ng-model="isTable">
+            <span class="c-indicator"></span>
+            Grid Or Table
+          </label>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+
+  <div class="col-md-12">
+
+    <div class="card-columns">
+      <div class="card" ng-repeat="tea in teas.teas | filter:query | orderBy: orderList">
+        <div class="card-header">
+          Price: {{tea.price}}
+          <i class="fa fa-usd"></i>
+        </div>
+
+        <img ng-if="tea.image" alt="{{tea.name}}" class="img-fluid" ng-src="{{tea.image}}">
+
+        <div class="card-block">
+          <h4 class="card-title">{{tea.name}}</h4>
+          <p class="card-text">{{tea.description}}</p>
+        </div>
+        <div class="card-block">
+          <a class="card-link" ng-href="#/teas/{{tea.id}}">Details</a>
+          <a class="card-link" ng-href="{{tea.link}}">Details Ext</a>
+        </div>
       </div>
     </div>
   </div>
