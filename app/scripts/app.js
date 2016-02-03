@@ -31,6 +31,16 @@ app.config(function ($routeProvider) {
       controller: 'AboutCtrl',
       controllerAs: 'about'
     })
+    .when('/teas/:id', {
+      templateUrl: 'views/tea.html',
+      controller: 'TeaCtrl',
+      controllerAs: 'tea'
+    })
+    .when('/teas', {
+      templateUrl: 'views/teas.html',
+      controller: 'TeasCtrl',
+      controllerAs: 'teas'
+    })
     .otherwise({
       redirectTo: '/'
     });

@@ -1,12 +1,6 @@
-<div class="row">
-  <div class="col-md-12">
-    <h1>Listing Featured Teas</h1>
-  </div>
-</div>
-
-<div class="row" ng-controller="MainCtrl as main">
+<div class="row" ng-controller="TeasCtrl as teas">
   <div class="card-columns">
-    <div class="card" ng-repeat="tea in main.teas track by $index">
+    <div class="card" ng-repeat="tea in teas.teas track by $index">
       <div class="card-header">
         Price: {{tea.price}}
         <i class="fa fa-usd"></i>
@@ -19,7 +13,8 @@
         <p class="card-text">{{tea.description}}</p>
       </div>
       <div class="card-block">
-        <a class="card-link" ng-href="{{tea.link}}">Details</a>
+        <a class="card-link" ng-href="#/teas/{{tea.id}}">Details</a>
+        <a class="card-link" ng-href="{{tea.link}}">Details Ext</a>
       </div>
     </div>
   </div>
