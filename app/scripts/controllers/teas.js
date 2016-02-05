@@ -16,6 +16,9 @@ angular.module('teaShopUiApp')
     var teas = Restangular.all('teas');
 
     teas.getList().then(function(teas) {
-      me.teas = teas;
+      me.teas = teas.map(function (tea) {
+        tea.price = parseFloat(tea.price);
+        return tea;
+      });
     });
   });

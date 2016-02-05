@@ -13,8 +13,8 @@
         <select id="order" class="c-select" ng-model="orderList">
           <option selected disabled value="">Order By</option>
           <option value="name">By name</option>
-          <option value="-price">Cheap</option>
-          <option value="price">Expensive</option>
+          <option value="price">Cheap first</option>
+          <option value="-price">Expensive first</option>
           <option value="description">By description</option>
         </select>
 
@@ -22,7 +22,7 @@
           <label class="c-input c-checkbox">
             <input type="checkbox" ng-model="isTable">
             <span class="c-indicator"></span>
-            Grid Or Table
+            Render Table
           </label>
         </div>
       </fieldset>
@@ -31,11 +31,38 @@
 
   <div class="col-md-12">
 
-    <div class="card-columns">
+    <table class="table" ng-if="isTable">
+      <thead>
+        <th>
+          <span>#</span>
+        </th>
+        <th>
+          <span>Name</span>
+        </th>
+        <th>
+          <span>Price</span>
+          <i class="fa fa-usd"></i>
+        </th>
+        <th>
+          <span>Description</span>
+        </th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="tea in teas.teas | filter:query | orderBy: orderList">
+          <th scope="row">{{tea.id}}</th>
+          <td>{{tea.name}}</td>
+          <td>{{tea.price | currency}}</td>
+          <td>{{tea.description}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card-columns" ng-if="!isTable">
       <div class="card" ng-repeat="tea in teas.teas | filter:query | orderBy: orderList">
         <div class="card-header">
-          Price: {{tea.price}}
-          <i class="fa fa-usd"></i>
+          <span>Price:</span>
+          <span class="label label-pill label-primary">{{tea.price | currency}}</span>
+          <i class="fa fa-coffee"></i>
         </div>
 
         <img ng-if="tea.image" alt="{{tea.name}}" class="img-fluid" ng-src="{{tea.image}}">
